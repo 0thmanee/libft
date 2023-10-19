@@ -1,10 +1,5 @@
 #include "libft.h"
 
-static int is_numeric(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
 int	ft_atoi(const char *nptr)
 {
 	int	i;
@@ -30,7 +25,7 @@ int	ft_atoi(const char *nptr)
 	}
 	return (sign * result);
 }
-/*#include <stdio.h>
+#include <stdio.h>
 int main()
 {
 	printf("%d\n", ft_atoi("21223"));
