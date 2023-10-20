@@ -1,10 +1,10 @@
 #include "libft.h"
 
-void    ft_memdel(void **ap)
+void	ft_memdel(void **ap)
 {
-    if (ap != NULL)
-    {
-        free(*ap);
-        *ap = NULL;
-    }
+	if (ap != NULL)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
 }
