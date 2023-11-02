@@ -1,33 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 18:34:10 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/01 18:34:13 by obouchta         ###   ########.fr       */
+/*   Created: 2023/11/02 16:14:49 by obouchta          #+#    #+#             */
+/*   Updated: 2023/11/02 16:14:52 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
- char	*ft_strnstr(const char *bg, const char *sml, size_t len)
- {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	if (!sml[i])
-		return ((char *)bg);
-	while (i < len && bg[i])
-	{
-		j = 0;
-		while ((i + j) < len && bg[i + j] && sml[j] && bg[i + j] == sml[j])
-			j++;
-		if (j == ft_strlen(sml))
-			return ((char *)bg + i);
-		i++;
-	}
-	return (NULL);
- }

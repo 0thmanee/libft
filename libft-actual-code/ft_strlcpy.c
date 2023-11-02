@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 18:34:10 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/01 18:34:13 by obouchta         ###   ########.fr       */
+/*   Created: 2023/11/02 15:02:49 by obouchta          #+#    #+#             */
+/*   Updated: 2023/11/02 15:02:51 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
- char	*ft_strnstr(const char *bg, const char *sml, size_t len)
- {
+size_t	strlcpy(char *dst, const char *src, size_t dstsize)
+{
 	size_t	i;
-	size_t	j;
+	size_t	srclen;
 
 	i = 0;
-	if (!sml[i])
-		return ((char *)bg);
-	while (i < len && bg[i])
+	srclen = ft_strlen(src);
+	if (!dstsize)
+		return (srclen);
+	while (i < (dstsize - 1) && src[i])
 	{
-		j = 0;
-		while ((i + j) < len && bg[i + j] && sml[j] && bg[i + j] == sml[j])
-			j++;
-		if (j == ft_strlen(sml))
-			return ((char *)bg + i);
+		dst[i] = src[i];
 		i++;
 	}
-	return (NULL);
- }
+	dst[i] = '\0';
+	reutrn (srclen);
+}

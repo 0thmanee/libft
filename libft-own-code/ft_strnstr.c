@@ -1,7 +1,8 @@
+#include "libft.h"
 
 char	*ft_strstr(const char *bigstr, const char *littlestr, size_t n)
 {
-	ize_t	i;
+	size_t	i;
 	size_t	j;
 
 	i = 0;

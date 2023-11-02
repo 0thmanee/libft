@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/obouchta/Desktop/libft/libft-own-code",
-      "program": "/Users/obouchta/Desktop/libft/libft-own-code/build/Debug/outDebug"
+      "cwd": "/Users/obouchta/Desktop/libft/libft-actual-code",
+      "program": "/Users/obouchta/Desktop/libft/libft-actual-code/build/Debug/outDebug"
     }
   ]
 }
