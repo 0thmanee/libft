@@ -15,11 +15,11 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	char	c2;
-    char    *location;
+	char	*location;
 	int		i;
 
 	c2 = (char)c;
-    location = NULL;
+	location = NULL;
 	i = 0;
 	while (s[i] != '\0')
 	{
