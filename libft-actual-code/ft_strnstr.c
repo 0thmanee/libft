@@ -12,8 +12,8 @@
 
 #include "libft.h"
 
- char	*ft_strnstr(const char *bg, const char *sml, size_t len)
- {
+char	*ft_strnstr(const char *bg, const char *sml, size_t len)
+{
 	size_t	i;
 	size_t	j;
 
@@ -30,4 +30,4 @@
 		i++;
 	}
 	return (NULL);
- }
+}
