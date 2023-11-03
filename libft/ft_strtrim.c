@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 15:02:49 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/02 15:02:51 by obouchta         ###   ########.fr       */
+/*   Created: 2023/11/03 18:55:33 by obouchta          #+#    #+#             */
+/*   Updated: 2023/11/03 18:55:35 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	strlcpy(char *dst, const char *src, size_t dstsize)
+int	calclen(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	srclen;
+	int	i;
 
 	i = 0;
-	srclen = ft_strlen(src);
-	if (!dstsize)
-		return (srclen);
-	while (i < (dstsize - 1) && src[i])
-	{
-		dst[i] = src[i];
+	while (s1[i] == set[i])
 		i++;
-	}
-	dst[i] = '\0';
-	reutrn (srclen);
+	if ()
+}
+char *ft_strtrim(char const *s1, char const *set)
+{
+	int		i;
+	char	trimmed;
+
+	if (!s1 || !set)
+		return (NULL);
+	trimmed = (char *)malloc()
 }

@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 14:31:07 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/02 14:31:10 by obouchta         ###   ########.fr       */
+/*   Created: 2023/11/01 15:44:31 by obouchta          #+#    #+#             */
+/*   Updated: 2023/11/01 15:44:35 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	int	i;
-	int	sign;
-	int	result;
+	char	*src2;
+	char	*dest2;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (str[i] == ' ')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	src2 = (char *)src;
+	dest2 = (char *)dest;
+	if (dest > src)
 	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
+		while (len > 0)
+		{
+			dest2[len - 1] = src2[len - 1];
+			len--;
+		}
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = (result * 10) + (str[i] - 48);
-		i++;
-	}
-	return (sign * result);
+	else
+		ft_memcpy(dest, src, len);
+	return (dest);
 }
