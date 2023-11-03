@@ -12,21 +12,36 @@
 
 #include "libft.h"
 
-int	calclen(char const *s1, char const *set)
+static int	checkinset(char c, const char *set)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] == set[i])
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
 		i++;
-	if ()
+	}
+	return (0);
 }
-char *ft_strtrim(char const *s1, char const *set)
-{
-	int		i;
-	char	trimmed;
 
-	if (!s1 || !set)
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	i;
+	size_t	j;
+
+	if (!s1)
 		return (NULL);
-	trimmed = (char *)malloc()
+	if (!set)
+		return (ft_strdup(s1));
+	i = 0;
+	while (checkinset(s1[i], set))
+		i++;
+	if (i == ft_strlen(s1))
+		return (ft_strdup(""));
+	j = ft_strlen(s1);
+	while (j >= 0 && checkinset(s1[j - 1], set))
+		j--;
+	return (ft_substr(s1, i, j - i));
 }
