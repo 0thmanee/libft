@@ -37,7 +37,6 @@ static int	calcdigits(int n)
 	return (count);
 }
 
-#include<stdio.h>
 char	*ft_itoa(int n)
 {
 	int		i;
@@ -56,7 +55,7 @@ char	*ft_itoa(int n)
 		nbr[i++] = '-';
 		n *= -1;
 	}
-    nbr[len] = '\0';
+	nbr[len] = '\0';
 	len--;
 	while (len >= 0)
 	{
