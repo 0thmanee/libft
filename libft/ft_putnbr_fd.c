@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 19:26:11 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/04 19:26:12 by obouchta         ###   ########.fr       */
+/*   Created: 2023/11/04 19:35:37 by obouchta          #+#    #+#             */
+/*   Updated: 2023/11/04 19:35:39 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
-	if (s)
-	{
-		i = 0;
-		while (s[i])
+	char	c;
+
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else{
+		if (n < 0)
 		{
-			ft_putchar_fd(s[i], fd);
-			i++;
+			ft_putchar_fd('-', fd);
+			n *= -1;
 		}
+		if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+		c = (n % 10) + '0';
+		ft_putchar_fd(c, fd);
 	}
 }

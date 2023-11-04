@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/obouchta/Desktop/libft/libft",
-      "program": "/Users/obouchta/Desktop/libft/libft/build/Debug/outDebug"
+      "cwd": "/Users/obouchta/Desktop/libft/libft-anas-code",
+      "program": "/Users/obouchta/Desktop/libft/libft-anas-code/build/Debug/outDebug"
     }
   ]
 }
