@@ -12,122 +12,66 @@
 
 #include "libft.h"
 
-static int	count_strings(char const *s, char c)
+static size_t	count_strings(const char *s, char c)
 {
 	int	i;
 	int	count;
-	int isubstr;
 
 	i = 0;
 	count = 0;
-	isubstr = 1;
-	if (s[i] == c)
-		i++;
 	while (s[i])
 	{
-		if (s[i] != c && isubstr)
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i])
 		{
-			count++;
-			isubstr = 0;
+			if (i == 0 || s[i - 1] == c)
+				count++;
+			i++;
 		}
-		if (s[i] == c)
-			isubstr = 1;
-		i++;
 	}
 	return (count);
 }
 
-static char	*copysubstr(const char *s, int *i, char c)
-{
-	int		j;
-	int		k;
-	int		len;
-	char	*substr;
-
-	k = *i;
-	len = 0;
-	while (s[k] != c)
-	{
-		len++;
-		k++;
-	}
-	substr = (char *)malloc(len + 1);
-	if (!substr)
-		return (NULL);
-	j = 0;
-	while (s[*i] != c && s[*i])
-	{
-		substr[j] = s[*i];
-		j++;
-		(*i)++;
-	}
-	substr[j] = '\0';
-	return (substr);
-}
-
-static void	free_memory(char **strings, int j)
+static char	**free_memory(char **strings)
 {
 	int	i;
 
 	i = 0;
-	while (i <= j)
+	while (strings[i])
 	{
 		free(strings[i]);
 		i++;
 	}
 	free(strings);
+	return (strings);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**strings;
 	int		i;
 	int		j;
-	int		count;
-	int 	isubstr;
 
-	if (!s)
-		return (NULL);
-	count = count_strings(s, c);
-	strings = (char **)malloc((count + 1) * sizeof(char *));
+	i = 0;
+	strings = (char **)malloc((count_strings(s, c) + 1) * sizeof(char *));
 	if (!strings)
 		return (NULL);
-	i = 0;
-	j = 0;
-	isubstr = 1;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] != c && isubstr)
-		{
-			strings[j] = copysubstr(s, &i, c);
-			if (!strings[j])
-				{
-					free_memory(strings, j);
-					return (NULL);
-				}
+		j = 0;
+		while (*s && *s == c)
+			s++;
+		while (s[j] && s[j] != c)
 			j++;
-			isubstr = 0;
+		if (j != 0)
+		{
+			strings[i] = ft_substr(s, 0, j);
+			if (strings[i] == NULL)
+				return (free_memory(strings));
+			i++;
 		}
-		if (s[i] == c)
-			isubstr = 1;
-		i++;
+		s = s + j;
 	}
-	strings[j] = 0;
 	return (strings);
-}
-#include <stdio.h>
-int main(int ac, char *av[])
-{
-    if (ac < 2) {
-        printf("Usage: %s <string>\n", av[0]);
-        return 1;
-    }
-	int i = 0;
-    char **split_result = ft_split(av[1], 'v');
-	while (split_result[i]) {
-		printf("%s\n", split_result[i]);
-		i++;
-	}
-
-    return 0;
 }
