@@ -27,7 +27,7 @@ static int	calcdigits(int n)
 	if (n < 0)
 	{
 		count++;
-		n = -n;
+		n *= -1;
 	}
 	while (n)
 	{
@@ -55,13 +55,13 @@ char	*ft_itoa(int n)
 		nbr[i++] = '-';
 		n *= -1;
 	}
-	nbr[len] = '\0';
-	len--;
+	nbr[len--] = '\0';
 	while (len >= 0)
 	{
-		nbr[len] = (n % 10) + 48;
-		len--;
-		n = n / 10;
+		if (len == 0 && nbr[len] == '-')
+			break ;
+		nbr[len--] = (n % 10) + 48;
+		n /= 10;
 	}
 	return (nbr);
 }

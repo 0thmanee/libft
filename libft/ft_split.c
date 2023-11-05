@@ -12,66 +12,112 @@
 
 #include "libft.h"
 
-static size_t	count_strings(const char *s, char c)
+static int	count_strings(char const *s, char c)
 {
 	int	i;
 	int	count;
+	int isubstr;
 
+	if (!s)
+		return (0);
 	i = 0;
 	count = 0;
+	isubstr = 1;
+	if (s[i] == c)
+		i++;
 	while (s[i])
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
+		if (s[i] != c && isubstr)
 		{
-			if (i == 0 || s[i - 1] == c)
-				count++;
-			i++;
+			count++;
+			isubstr = 0;
 		}
+		if (s[i] == c)
+			isubstr = 1;
+		i++;
 	}
 	return (count);
 }
 
-static char	**free_memory(char **strings)
+static char	*copysubstr(const char *s, int *i, char c)
+{
+	int		j;
+	int		len;
+	char	*substr;
+
+	j = *i;
+	len = 0;
+	while (s[j] != c && s[j])
+	{
+		len++;
+		j++;
+	}
+	substr = (char *)malloc(len + 1);
+	if (!substr)
+		return (NULL);
+	j = 0;
+	while (s[*i] != c && s[*i])
+	{
+		substr[j] = s[*i];
+		j++;
+		(*i)++;
+	}
+	substr[j] = '\0';
+	return (substr);
+}
+
+static char	**free_memory(char **strings, int j)
 {
 	int	i;
 
 	i = 0;
-	while (strings[i])
+	while (i < j)
 	{
 		free(strings[i]);
 		i++;
 	}
 	free(strings);
-	return (strings);
+	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char **ft_split(char const *s, char c)
 {
 	char	**strings;
 	int		i;
 	int		j;
+	int 	isubstr;
 
-	i = 0;
 	strings = (char **)malloc((count_strings(s, c) + 1) * sizeof(char *));
 	if (!strings)
 		return (NULL);
-	while (*s)
+	i = -1;
+	j = 0;
+	isubstr = 1;
+	while (s[++i])
 	{
-		j = 0;
-		while (*s && *s == c)
-			s++;
-		while (s[j] && s[j] != c)
-			j++;
-		if (j != 0)
+		if (s[i] != c && isubstr)
 		{
-			strings[i] = ft_substr(s, 0, j);
-			if (strings[i] == NULL)
-				return (free_memory(strings));
-			i++;
+			strings[j] = copysubstr(s, &i, c);
+			if (!strings[j])
+				return (free_memory(strings, j));
+			j++;
+			isubstr = 0;
 		}
-		s = s + j;
+		if (s[i] == c)
+			isubstr = 1;
 	}
+	strings[j] = 0;
 	return (strings);
+}
+#include <stdio.h>
+int main()
+{
+	int i = 0;
+	char *s = "                  olol";
+ 	char **result = ft_split(s, ' ');
+	while (result[i]) {
+		printf("%s", result[i]);
+		i++;
+	}
+	return 0;
 }
