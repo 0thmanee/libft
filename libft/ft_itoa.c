@@ -63,5 +63,5 @@ char	*ft_itoa(int n)
 		len--;
 		n = n / 10;
 	}
-    return (nbr);
+	return (nbr);
 }
