@@ -12,112 +12,78 @@
 
 #include "libft.h"
 
-static int	count_strings(char const *s, char c)
+static int		ft_find_word(const char *str, int i, char **ret, char c)
 {
-	int	i;
-	int	count;
-	int isubstr;
+	int		len;
+	int		space;
+
+	space = 0;
+	len = 0;
+	while (*str == c)
+	{
+		str++;
+		space++;
+	}
+	while (str[len] && str[len] != c)
+		len++;
+	if (len > 0)
+	{
+		ret[i] = (char *)malloc(len * sizeof(char));
+		ft_strlcpy(ret[i], str, len);
+	}
+	return (space + len);
+}
+
+static int		ft_count_words(const char *str, int i, char c)
+{
+	while (*str == c)
+		str++;
+	while (*str)
+	{
+		while (*str && *str != c)
+			str++;
+		while (*str == c)
+			str++;
+		i++;
+	}
+	return (i);
+}
+
+char			**ft_split(char const *s, char c)
+{
+	int		len;
+	char	**ret;
+	int		i;
+	int		wc;
 
 	if (!s)
-		return (0);
-	i = 0;
-	count = 0;
-	isubstr = 1;
-	if (s[i] == c)
-		i++;
-	while (s[i])
-	{
-		if (s[i] != c && isubstr)
-		{
-			count++;
-			isubstr = 0;
-		}
-		if (s[i] == c)
-			isubstr = 1;
-		i++;
-	}
-	return (count);
-}
-
-static char	*copysubstr(const char *s, int *i, char c)
-{
-	int		j;
-	int		len;
-	char	*substr;
-
-	j = *i;
+		return (NULL);
+	wc = ft_count_words(s, 0, c);
 	len = 0;
-	while (s[j] != c && s[j])
-	{
-		len++;
-		j++;
-	}
-	substr = (char *)malloc(len + 1);
-	if (!substr)
+	ret = (char **)ft_memalloc((wc + 1) * sizeof(char *));
+	if (!ret)
 		return (NULL);
-	j = 0;
-	while (s[*i] != c && s[*i])
-	{
-		substr[j] = s[*i];
-		j++;
-		(*i)++;
-	}
-	substr[j] = '\0';
-	return (substr);
-}
-
-static char	**free_memory(char **strings, int j)
-{
-	int	i;
-
 	i = 0;
-	while (i < j)
+	len = 0;
+	while (*s)
 	{
-		free(strings[i]);
-		i++;
+		len = ft_find_word(s, i++, ret, c);
+		s += len;
 	}
-	free(strings);
-	return (NULL);
+	ret[wc] = 0;
+	return (ret);
 }
 
-char **ft_split(char const *s, char c)
-{
-	char	**strings;
-	int		i;
-	int		j;
-	int 	isubstr;
-
-	strings = (char **)malloc((count_strings(s, c) + 1) * sizeof(char *));
-	if (!strings)
-		return (NULL);
-	i = -1;
-	j = 0;
-	isubstr = 1;
-	while (s[++i])
-	{
-		if (s[i] != c && isubstr)
-		{
-			strings[j] = copysubstr(s, &i, c);
-			if (!strings[j])
-				return (free_memory(strings, j));
-			j++;
-			isubstr = 0;
-		}
-		if (s[i] == c)
-			isubstr = 1;
-	}
-	strings[j] = 0;
-	return (strings);
-}
-#include <stdio.h>
 int main()
 {
 	int i = 0;
-	char *s = "                  olol";
- 	char **result = ft_split(s, ' ');
+	char *s = "1";
+ 	char **result = ft_split("Hello there", ' ');
 	while (result[i]) {
 		printf("%s", result[i]);
 		i++;
 	}
+	printf("%s", result[0]);
+	printf("%s", result[1]);
 	return 0;
-}
+}	

@@ -62,6 +62,7 @@
     "cstdlib": "cpp",
     "locale": "cpp",
     "ostream": "cpp",
-    "new": "cpp"
+    "new": "cpp",
+    "stdio.h": "c"
   }
 }
