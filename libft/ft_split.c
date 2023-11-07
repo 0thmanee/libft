@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:32:08 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/04 14:32:09 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:59:27 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,3 @@ char	**ft_split(char const *s, char c)
 	strings[i] = NULL;
 	return (strings);
 }
-
-int main()
-{
-	int i = 0;
-	char *s = "1";
- 	char **result = ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^');
-	while (result[i]) {
-		printf("%s:", result[i]);
-		i++;
-	}
-	return 0;
-}	

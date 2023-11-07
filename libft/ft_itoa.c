@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:40:01 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/04 16:40:04 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:51:59 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,3 @@ char	*ft_itoa(int n)
 	}
 	return (nbr);
 }
-
-// #include <string.h>
-// int main()
-// {
-// 	int i = 0;
-// 	char *str;
-// 	str = ft_itoa(42);
-// 	if (!strcmp(ft_itoa(42), "40"))
-// 		printf("Success!!!!\n");
-// 	else
-// 		printf("\033[1;31mError!!!\033[0m\n");
-// }
