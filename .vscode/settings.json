@@ -63,6 +63,11 @@
     "locale": "cpp",
     "ostream": "cpp",
     "new": "cpp",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "stdexcept": "cpp",
+    "string": "cpp",
+    "bitset": "cpp",
+    "sstream": "c",
+    "unistd.h": "c"
   }
 }

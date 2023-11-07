@@ -5,7 +5,7 @@ SRCF = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
        ft_bzero.c ft_memcmp.c ft_strdup.c ft_calloc.c ft_substr.c \
        ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
        ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-       ft_putnbr_fd.c
+       ft_putnbr_fd.c \
 
 OBJF = $(SRCF:.c=.o)
 
@@ -15,10 +15,14 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
-all: $(NAME)
+all: $(NAME) 
+
+%.o: %.c libft.h
+	${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME): $(OBJF)
 	ar -rc $(NAME) $(OBJF)
+
 
 clean:
 	$(RM) $(OBJF) $(OBJBF)

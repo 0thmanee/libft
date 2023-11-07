@@ -26,3 +26,13 @@ void	*ft_memset(void *ptr, int value, size_t num)
 	}
 	return (ptr);
 }
+
+/* int main()
+{
+	int i;
+	ft_memset((char *)&i, 199,1);
+	ft_memset((char *)&i+1 ,250, 1);
+	ft_memset((char *)&i+2, 255,1);
+	ft_memset((char *)&i+3, 255,1);
+}
+ */

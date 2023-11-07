@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-static char	*check(int n)
+static char	*checker(int n)
 {
 	if (n == 0)
 		return (ft_strdup("0"));
 	return (ft_strdup("-2147483648"));
 }
 
-static int	calcdigits(int n)
+static int	calc_digits(int n)
 {
 	int	count;
 
@@ -44,8 +44,8 @@ char	*ft_itoa(int n)
 	int		len;
 
 	if (n == 0 || n == -2147483648)
-		return (check(n));
-	len = calcdigits(n);
+		return (checker(n));
+	len = calc_digits(n);
 	nbr = (char *)malloc(len + 1);
 	if (!nbr)
 		return (NULL);
@@ -55,13 +55,27 @@ char	*ft_itoa(int n)
 		nbr[i++] = '-';
 		n *= -1;
 	}
-	nbr[len--] = '\0';
-	while (len >= 0)
+	else
+		nbr[0] = '+';
+	nbr[len] = '\0';
+	while (--len >= 0)
 	{
 		if (len == 0 && nbr[len] == '-')
 			break ;
-		nbr[len--] = (n % 10) + 48;
+		nbr[len] = (n % 10) + 48;
 		n /= 10;
 	}
 	return (nbr);
 }
+
+// #include <string.h>
+// int main()
+// {
+// 	int i = 0;
+// 	char *str;
+// 	str = ft_itoa(42);
+// 	if (!strcmp(ft_itoa(42), "40"))
+// 		printf("Success!!!!\n");
+// 	else
+// 		printf("\033[1;31mError!!!\033[0m\n");
+// }

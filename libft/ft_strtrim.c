@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
 static int	checkinset(char c, const char *set)
 {
 	int	i;
