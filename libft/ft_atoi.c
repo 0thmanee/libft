@@ -39,6 +39,6 @@ int	ft_atoi(const char *str)
 }
 int main()
 {
-	printf("%d \n", atoi("42147483649"));
-	printf("%d", ft_atoi("42147483649"));
+	printf("%d \n", atoi("9223372036854775807"));
+	printf("%d", ft_atoi("9223372036854775807"));
 }
