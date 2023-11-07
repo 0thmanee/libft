@@ -12,30 +12,30 @@
 
 #include "libft.h"
 
-static size_t	words_counts(char const *s, char c)
+static size_t	count_words(char const *s, char c)
 {
 	size_t	count;
 	size_t	i;
-	int		is_word;
+	int		is_subs;
 
-	is_word = 0;
+	is_subs = 0;
 	i = 0;
 	count = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
-			is_word = 0;
-		else if (!is_word)
+			is_subs = 0;
+		else if (!is_subs)
 		{
 			count++;
-			is_word = 1;
+			is_subs = 1;
 		}
 		i++;
 	}
 	return (count);
 }
 
-static size_t	next_len(char const *s, char c)
+static size_t	calc_len(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -55,65 +55,63 @@ static size_t	next_len(char const *s, char c)
 static char	*next_word(char const **s, char c)
 {
 	size_t	i;
-	char	*p;
-	size_t	next_lens;
+	char	*strings;
+	size_t	len;
 
 	while (**s == c && **s)
 		(*s)++;
-	next_lens = next_len(*s, c);
-	p = (char *) malloc (sizeof (char) * (next_lens + 1));
-	if (!p)
+	len = calc_len(*s, c);
+	strings = (char *) malloc (sizeof (char) * (len + 1));
+	if (!strings)
 		return (NULL);
 	i = 0;
-	while (i < next_lens)
+	while (i < len)
 	{
-		p[i] = **s;
+		strings[i] = **s;
 		i++;
 		(*s)++;
 	}
-	p[i] = '\0';
-	return (p);
+	strings[i] = '\0';
+	return (strings);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	n_words;
-	char	**p;
+	size_t	nbr_words;
+	char	**strings;
 	size_t	i;
 
 	i = 0;
 	if (!s)
 		return (NULL);
-	n_words = words_counts(s, c);
-	p = (char **) malloc (sizeof(char *) * (n_words + 1));
-	if (!p)
+	nbr_words = count_words(s, c);
+	strings = (char **) malloc (sizeof(char *) * (nbr_words + 1));
+	if (!strings)
 		return (NULL);
-	while (i < n_words)
+	while (i < nbr_words)
 	{
-		*(p + i) = next_word(&s, c);
-		if (!p[i])
+		*(strings + i) = next_word(&s, c);
+		if (!strings[i])
 		{
 			while (i > 0)
-			{
-				free(p[--i]);
-			}
-			free (p);
+				free(strings[--i]);
+			free (strings);
 			return (NULL);
 		}
 		i++;
 	}
-	p[i] = NULL;
-	return (p);
+	strings[i] = NULL;
+	return (strings);
 }
 
-// int main()
-// {
-// 	int i = 0;
-// 	char *s = "1";
-//  	char **result = ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^');
-// 	while (result[i]) {
-// 		printf("%s:", result[i]);
-// 		i++;
-// 	}
-// 	return 0;
-// }	
+int main()
+{
+	int i = 0;
+	char *s = "1";
+ 	char **result = ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^');
+	while (result[i]) {
+		printf("%s:", result[i]);
+		i++;
+	}
+	return 0;
+}	

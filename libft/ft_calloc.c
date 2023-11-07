@@ -14,19 +14,15 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
 	size_t	bytes;
-	char	*str;
+	void	*str;
 
+	if ((size && count > (4294967295 / size)))
+		return (NULL);
 	bytes = count * size;
-	str = (char *)malloc(bytes);
+	str = malloc(bytes);
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (i < bytes)
-	{
-		str[i] = 0;
-		i++;
-	}
-	return ((void *)str);
+	ft_bzero(str, bytes);
+	return (str);
 }

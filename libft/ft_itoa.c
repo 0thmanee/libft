@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*checker(int n)
+static char	*min_or_0(int n)
 {
 	if (n == 0)
 		return (ft_strdup("0"));
@@ -39,24 +39,21 @@ static int	calc_digits(int n)
 
 char	*ft_itoa(int n)
 {
-	int		i;
 	char	*nbr;
 	int		len;
 
 	if (n == 0 || n == -2147483648)
-		return (checker(n));
+		return (min_or_0(n));
 	len = calc_digits(n);
 	nbr = (char *)malloc(len + 1);
 	if (!nbr)
 		return (NULL);
-	i = 0;
+	nbr[0] = '+';
 	if (n < 0)
 	{
-		nbr[i++] = '-';
+		nbr[0] = '-';
 		n *= -1;
 	}
-	else
-		nbr[0] = '+';
 	nbr[len] = '\0';
 	while (--len >= 0)
 	{
