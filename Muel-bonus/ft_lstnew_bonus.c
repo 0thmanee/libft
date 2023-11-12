@@ -22,4 +22,5 @@ t_list	*ft_lstnew(void *content)
 	new_t_list->content = content;
 	new_t_list->next = NULL;
 	return (new_t_list);
+	
 }
