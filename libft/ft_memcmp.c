@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:16:49 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/01 18:16:53 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:53:07 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,4 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		return (0);
 	return ((unsigned char)s3[i] - (unsigned char)s4[i]);
 }
+

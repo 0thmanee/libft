@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:39:51 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/01 14:39:54 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:59:42 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,4 @@ void	*ft_memset(void *ptr, int value, size_t num)
 	return (ptr);
 }
 
-/* int main()
-{
-	int i;
-	ft_memset((char *)&i, 199,1);
-	ft_memset((char *)&i+1 ,250, 1);
-	ft_memset((char *)&i+2, 255,1);
-	ft_memset((char *)&i+3, 255,1);
-}
- */
+
