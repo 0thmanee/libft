@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouchta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:34:10 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/01 18:34:13 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:27:12 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,4 @@ char	*ft_strnstr(const char *bg, const char *sml, size_t len)
 	}
 	return (NULL);
 }
+

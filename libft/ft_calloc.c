@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:01:36 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/13 11:38:01 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:37:39 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_calloc(size_t count, size_t size)
 
 	if ((size && count > (4294967295 / size)))
 		return (NULL);
+	if ((int) count < 0 && (int) size <  0)
+        return (NULL);
 	bytes = count * size;
 	str = malloc(bytes);
 	if (!str)

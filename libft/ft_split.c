@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:32:08 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/13 17:01:19 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:14:25 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 static size_t	count_words(char const *s, char c)
 {
-	size_t	count;
 	size_t	i;
-	int		is_subs;
+	size_t	count;
 
-	is_subs = 0;
 	i = 0;
 	count = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
-			is_subs = 0;
-		else if (!is_subs)
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i])
 		{
-			count++;
-			is_subs = 1;
+			if (i == 0 || s[i - 1] == c)
+				count++;
+			i++;
 		}
-		i++;
 	}
 	return (count);
 }
@@ -42,8 +40,6 @@ static size_t	calc_len(char const *s, char c)
 
 	count = 0;
 	i = 0;
-	while (s[i] == c && s[i])
-		i++;
 	while (s[i] != c && s[i])
 	{
 		i++;
@@ -52,27 +48,27 @@ static size_t	calc_len(char const *s, char c)
 	return (count);
 }
 
-static char	*next_word(char const **s, char c)
+static char	*fill_subs(char const **s, char c)
 {
 	size_t	i;
-	char	*strings;
+	char	*subs;
 	size_t	len;
 
 	while (**s == c && **s)
 		(*s)++;
 	len = calc_len(*s, c);
-	strings = (char *) malloc (sizeof (char) * (len + 1));
-	if (!strings)
+	subs = (char *) malloc (sizeof (char) * (len + 1));
+	if (!subs)
 		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		strings[i] = **s;
+		subs[i] = **s;
 		i++;
 		(*s)++;
 	}
-	strings[i] = '\0';
-	return (strings);
+	subs[i] = '\0';
+	return (subs);
 }
 
 char	**ft_split(char const *s, char c)
@@ -90,7 +86,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (i < nbr_words)
 	{
-		*(strings + i) = next_word(&s, c);
+		strings[i] = fill_subs(&s, c);
 		if (!strings[i])
 		{
 			while (i > 0)
