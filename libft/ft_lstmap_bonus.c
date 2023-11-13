@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:13:32 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/13 11:13:33 by obouchta         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:21:03 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*new_lst;
 	t_list	*node;
 
+	new_lst = NULL;
 	if (lst == NULL || f == NULL || del == NULL)
 		return (NULL);
 	while (lst)

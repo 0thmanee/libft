@@ -27,13 +27,13 @@ OBJSB = $(FILESB:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) libft.h
+$(NAME): $(OBJS)
 	$(AR) $@ $^
 
 bonus: $(OBJS) $(OBJSB)
 	$(AR) $(NAME) $^
 
-%.o: %.c
+%.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
